@@ -70,8 +70,39 @@ export function getNextStops(
   }
   // returns an updated array of stations for a circular line
   else if (line.type === LineType.Cyclic && indexFromStation !== -1) {
-    // to implement during the interview according to the tests
-    throw new Error("To implement the cyclic lines");
+    // returns an updated array of stations for a circular line with a circular direction of the line
+    if (direction === Direction.Forward) {
+      // returns an updated array of stations for nStops more than a length of the circular line, else returns 
+      // updated array of stations for nStops equal or less than a length of the circular line
+      if (indexFromStation + nStops > line.stations.length - 1) {
+        let circledStations: string[] = [];
+        let circledStationsCount: number = nStops;
+        // updates circledStations array with stations in the first circle
+        if (indexFromStation < line.stations.length - 1) {
+          circledStations = line.stations.slice(indexFromStation + 1, line.stations.length);
+          circledStationsCount = circledStationsCount - (line.stations.length - indexFromStation - 1);
+        }
+        // updates circledStations array with circles of stations while the number of stations in stations array fits 
+        // to the number of the nStops
+        while (circledStationsCount >= line.stations.length) {
+          circledStations = circledStations.concat(line.stations);
+          circledStationsCount -= line.stations.length;
+        }
+        // updates circledStations array with the remaining stations on a circle
+        if (circledStationsCount > 0 && circledStationsCount < line.stations.length) {
+          circledStations = circledStations.concat(line.stations.slice(0, circledStationsCount));
+          circledStationsCount = circledStationsCount - circledStationsCount;
+        }
+        return circledStations;
+      }
+      else {
+        return line.stations.slice(indexFromStation + 1, indexFromStation + 1 + nStops);
+      }
+    }
+    else if (direction === Direction.Backward) {
+
+      throw new Error("Backward direction for circled line");
+    }
   }
   else {
     throw new Error("Station is not found");

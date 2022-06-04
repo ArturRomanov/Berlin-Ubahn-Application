@@ -28,7 +28,7 @@ export const RouteWrapper = styled.div`
                 color: white; 
                 margin: 5px 5px 5px 0px;
                 padding: 3px 3px 3px 0px;
-                width: 31px;
+                width: 37px;
                 height: 25px;
                 text-align: center;
                 vertical-align: middle;

@@ -59,7 +59,7 @@ describe("linear line", () => {
 });
 
 // ignore these for now - we'll talk about it in the interview
-xdescribe("cyclic line", () => {
+describe("cyclic line", () => {
   const cyclicLine: Line = {
     name: "dummy",
     color: "#ff0000",

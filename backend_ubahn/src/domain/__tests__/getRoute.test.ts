@@ -18,7 +18,7 @@ it(`finds route on the same line U7 Siemensdamm -> Jungfernheide`, () => {
 });
 
 it(`works when switching lines in one direction`, () => {
-  const route = getRoute("Hohenzollernplatz", "Bundesplatz", lines);
+  const route = getRoute("Hohenzollernplatz", "Güntzelstraße", lines);
 
   expect(route).toBeDefined();
   expect(route).toHaveLength(3);
@@ -33,19 +33,19 @@ it(`works when switching lines in one direction`, () => {
   expect($switch.line.name).toBe("U9");
 
   expect(exit.action).toBe("exit");
-  expect(exit.station).toBe("Bundesplatz");
+  expect(exit.station).toBe("Güntzelstraße");
   expect(exit.line.name).toBe("U9");
 });
 
 it(`works when switching lines in another direction`, () => {
-  const route = getRoute("Breitenbachplatz", "Birkenstraße", lines);
+  const route = getRoute("Hohenzollernplatz", "Birkenstraße", lines);
 
   expect(route).toBeDefined();
   expect(route).toHaveLength(3);
 
   const [enter, $switch, exit] = route!;
   expect(enter.action).toBe("enter");
-  expect(enter.station).toBe("Breitenbachplatz");
+  expect(enter.station).toBe("Hohenzollernplatz");
   expect(enter.line.name).toBe("U3");
 
   expect($switch.action).toBe("switch");
@@ -82,7 +82,7 @@ it(`works when switching lines with several switches`, () => {
 });
 
 // ignore these for now - we'll talk about it in the interview
-xdescribe("cyclic lines", () => {
+describe("cyclic lines", () => {
   it(`chooses S41 for Westend -> Ostkreuz`, () => {
     const route = getRoute("Westend", "Ostkreuz", lines);
 
@@ -114,5 +114,25 @@ xdescribe("cyclic lines", () => {
     expect(exit.station).toBe("Westend");
     expect(exit.line.name).toBe("S42");
   });
+
+  it(`works when switching lines`, () => {
+    const route = getRoute("Westkreuz", "Hohenzollernplatz", lines);
+
+    expect(route).toBeDefined();
+    expect(route).toHaveLength(3);
+
+    const [enter, $switch, exit] = route!;
+    expect(enter.action).toBe("enter");
+    expect(enter.station).toBe("Westkreuz");
+    expect(enter.line.name).toBe("S42");
+
+    expect($switch.action).toBe("switch");
+    expect($switch.station).toBe("Heidelberger Platz");
+    expect($switch.line.name).toBe("U3");
+
+    expect(exit.action).toBe("exit");
+    expect(exit.station).toBe("Hohenzollernplatz");
+    expect(exit.line.name).toBe("U3");
+  })
 });
 

@@ -6,6 +6,7 @@ import { Direction } from "../domain/Direction";
 import { getNextStops } from "../domain/getNextStops";
 import { getAccessibleLines } from "../domain/getAccessibleLines";
 import { Route, getRoute } from "../domain/getRoute";
+import { Routes } from "../models/routes";
 
 const router = express.Router();
 
@@ -157,6 +158,18 @@ router.get(
       const originStation: string = req.params.originStation;
       const destinationStation: string = req.params.destinationStation;
       
+      //const routes = await Routes.create({ originStation: originStation, destinationStation: destinationStation });
+
+      //const id: number = 0;
+
+      //const deleteRoutes = await Routes.destroy({ where: {id}});
+
+      //const theRoutes = await Routes.findAll();
+
+      //const theRoute = await Routes.findByPk(id);
+
+      //const updateRoutes = await Routes.update({originStation: originStation, destinationStation: destinationStation}, {where: {id}});
+
       // find the path between the stations
       const route: Route = getRoute(originStation, destinationStation, lines);
       res.send(route);

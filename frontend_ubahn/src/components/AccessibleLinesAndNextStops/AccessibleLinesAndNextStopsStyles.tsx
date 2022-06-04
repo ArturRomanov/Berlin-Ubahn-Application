@@ -34,7 +34,7 @@ export const AccessibleLinesAndNextStopsWrapper = styled.div`
         color: white; 
         margin: 5px;
         padding: 3px;
-        width: 31px;
+        width: 37px;
         height: 25px;
         text-align: center;
         vertical-align: middle;
