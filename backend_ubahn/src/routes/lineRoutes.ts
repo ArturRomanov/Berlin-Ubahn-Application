@@ -88,7 +88,7 @@ router.get(
       const nextStopsString: string | undefined = req.params.nextStops;
       let nStops: number;
       const defaultNextStops: number = 3;
-      if (typeof nextStopsString === "string") {
+      if (typeof nextStopsString === "string" && /[0-9]/.test(nextStopsString)) {
         nStops = parseInt(nextStopsString);
       }
       else {

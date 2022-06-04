@@ -33,6 +33,8 @@ export function getNextStops(
   if (line.type === LineType.Linear && indexFromStation !== -1) {
     // returns an updated array of stations for a linear line with a forward direction of the line
     if (direction === Direction.Forward) {
+      return line.stations.filter((station, indexOfStation) => (indexOfStation > indexFromStation && indexOfStation <= indexFromStation + nStops));
+      {/*
       // checks if the stations array has sufficient number of elements to return the 
       // updated stations array with nStops, else it slices and returns the updated stations array
       if (indexFromStation < line.stations.length - nStops) {
@@ -48,9 +50,12 @@ export function getNextStops(
           return [];
         }
       }
+      */}
     }
     // returns an updated array of stations for a linear line with a backward direction of the line
     else if (direction === Direction.Backward) {
+      return line.stations.filter((station, indexOfStation) => (indexOfStation < indexFromStation && indexOfStation >= indexFromStation - nStops)).reverse();
+      {/*
       // checks if the stations array has sufficient number of elements to return the 
       // updated stations array with nStops, else it slices and returns the updated stations array
       if (indexFromStation >= nStops) {
@@ -66,6 +71,7 @@ export function getNextStops(
           return [];
         }
       }
+      */}
     }
   }
   // returns an updated array of stations for a circular line
@@ -108,4 +114,5 @@ export function getNextStops(
     throw new Error("Station is not found");
   }
   throw new Error("getNextStops Error");
+
 }
