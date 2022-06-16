@@ -1,6 +1,6 @@
 # Berlin-Ubahn-Application
 
-A web application for a subway of Berlin, which shows lines, stations, accessible lines for stations, next stations from a station, and an AI functionality which searches and find the best route between the stations.
+A web application for a subway of Berlin, which shows lines, stations, accessible lines for stations, next stations from a station, and an AI functionality which searches and finds the best route between the stations.
 
 Website is https://berlin-ubahn-application.herokuapp.com.
 
